@@ -14,7 +14,6 @@ function setupEnv(){
 
 function startEnv(){
     export BIGQUERY_TABLE_ID=baptista-cloud.mytest.cloud_asset_inventory
-    export GCP_PROJECT=100211995189
     functions-framework --target=main_function --port=8080 --debug
 }
 
