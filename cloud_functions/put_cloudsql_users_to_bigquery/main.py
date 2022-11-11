@@ -33,8 +33,10 @@ def get_users_from_sqladmin_googleapis(message):
         for item in message:
             request = service.users().list(project=project_id, instance=item["name"])
             response = request.execute()
-            print(json.dumps(response, indent=2))
+            item['users'] = response
+            print('Getting users from resource: {} - total {} user(s)'.format( str(item["name"]), len(item["users"]["items"])))
 
+        return message
     except Exception as e:
         print('Error to get users from sqladmin api: {}'.format(str(e)))
         raise        
@@ -49,7 +51,8 @@ def put_data_to_bigquery(bigquery_table_id, message):
                     'type': item["type"],
                     'api': item["api"],
                     'location': item["location"],
-                    'lastUpdate': item["lastUpdate"]
+                    'lastUpdate': item["lastUpdate"],
+                    'users': json.dumps(item["users"])
                 }
             ])
             if errors != []:
@@ -64,4 +67,4 @@ def main_function(cloud_event):
     asset_content = get_asset_from_cloud_event(cloud_event.data)
     bigquery_table_id = get_bigquery_table_id()
     resources = get_users_from_sqladmin_googleapis(asset_content)
-    # put_data_to_bigquery(bigquery_table_id, resources)
+    put_data_to_bigquery(bigquery_table_id, resources)
