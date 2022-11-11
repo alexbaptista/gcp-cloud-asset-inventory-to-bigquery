@@ -1,11 +1,9 @@
 import os
 import json
-import logging
 import functions_framework
-from google.cloud import asset_v1
-from google.cloud import pubsub_v1
-from google.cloud import logging_v2
-from concurrent import futures
+import google.cloud.asset_v1 as asset_v1
+import google.cloud.pubsub_v1 as pubsub_v1
+import concurrent.futures as futures
 
 def get_asset_type_from_event(message_from_pubsub):
     try:
