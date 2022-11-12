@@ -1,5 +1,6 @@
 import os
 import json
+import base64
 import functions_framework
 import google.cloud.asset_v1 as asset_v1
 import google.cloud.pubsub_v1 as pubsub_v1
@@ -7,7 +8,8 @@ import concurrent.futures as futures
 
 def get_asset_type_from_event(message_from_pubsub):
     try:
-        asset_types = message_from_pubsub["message"]["attributes"]["assetTypes"]
+        message_decoded = json.loads(base64.b64decode(message_from_pubsub["message"]["data"]))
+        asset_types = message_decoded["assetTypes"]
         print('Setting asset types to get from Cloud Asset Inventory API: {}'.format(str(asset_types)))
         return asset_types
     except Exception as e:
