@@ -192,3 +192,6 @@ terraform.rc
 
 # TFlint
 .tflint.d
+
+# Ignore zip files
+*.zip
