@@ -130,7 +130,7 @@ variable "service_account_get_cloudsql_instance_inventory" {
   })
   default = {
     account_id   = "cloudsql-instance-inventory"
-    display_name = "SA for CF get-"
+    display_name = "SA for CF get-cloudsql-instance-inventory"
     roles = {
       # "cloudrun"      = "roles/run.invoker"
       # "cloudsql"      = "roles/cloudsql.client"
