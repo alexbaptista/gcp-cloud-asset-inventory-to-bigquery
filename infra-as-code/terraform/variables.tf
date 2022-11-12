@@ -195,27 +195,15 @@ variable "random_name_suffix_for_storage_bucket" {
 }
 
 variable "cloud_functions_get_cloudsql_instance_inventory" {
-  type = object({
-    name   = string
-    source = string
-  })
-  default = {
-    name   = "cloud_functions/get_cloudsql_instance_inventory/get_cloudsql_instance_inventory.zip"
-    source = "../../cloud_functions/get_cloudsql_instance_inventory.zip"
-  }
-  description = "Settings to upload source code for Cloud Functions"
+  type        = string
+  default     = "../../cloud_functions/get_cloudsql_instance_inventory"
+  description = "Source path to upload source code for Cloud Functions"
 }
 
 variable "cloud_functions_put_cloudsql_users_to_bigquery" {
-  type = object({
-    name   = string
-    source = string
-  })
-  default = {
-    name   = "cloud_functions/put_cloudsql_users_to_bigquery/put_cloudsql_users_to_bigquery.zip"
-    source = "../../cloud_functions/put_cloudsql_users_to_bigquery.zip"
-  }
-  description = "Settings to upload source code for Cloud Functions"
+  type        = string
+  default     = "../../cloud_functions/put_cloudsql_users_to_bigquery"
+  description = "Source path to upload source code for Cloud Functions"
 }
 
 variable "cloud_functions_get_cloudsql_instance_inventory_settings" {
