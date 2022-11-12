@@ -40,14 +40,26 @@ variable "scheduler_job_cron" {
 }
 
 variable "topic_scheduler_job" {
-  type        = string
-  default     = "pub-sub-for-trigger-cloudfunctions"
+  type = object({
+    message_retention_duration = string
+    name                       = string
+  })
+  default = {
+    message_retention_duration = "604800s"
+    name                       = "pub-sub-for-trigger-cloudfunctions"
+  }
   description = "Settings for Pub Sub"
 }
 
 variable "topic_bigquery" {
-  type        = string
-  default     = "pub-sub-for-put-data-into-bigquery"
+  type = object({
+    message_retention_duration = string
+    name                       = string
+  })
+  default = {
+    message_retention_duration = "604800s"
+    name                       = "pub-sub-for-put-data-into-bigquery"
+  }
   description = "Settings for Pub Sub"
 }
 
