@@ -117,7 +117,7 @@ variable "service_account_get_cloudsql_instance_inventory" {
     roles        = map(string)
   })
   default = {
-    account_id   = "get-cloudsql-instance-inventory"
+    account_id   = "cloudsql-instance-inventory"
     display_name = "SA for CF get-"
     roles = {
       # "cloudrun"      = "roles/run.invoker"
@@ -137,7 +137,7 @@ variable "service_account_put_cloudsql_users_to_bigquery" {
     roles        = map(string)
   })
   default = {
-    account_id   = "put-cloudsql-users-to-bigquery"
+    account_id   = "cloudsql-users-to-bigquery"
     display_name = "SA for CF put-cloudsql-users-to-bigquery"
     roles = {
       "bigquery" = "roles/bigquery.dataEditor"
