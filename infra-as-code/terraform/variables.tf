@@ -132,11 +132,8 @@ variable "service_account_get_cloudsql_instance_inventory" {
     account_id   = "cloudsql-instance-inventory"
     display_name = "SA for CF get-cloudsql-instance-inventory"
     roles = {
-      # "cloudrun"      = "roles/run.invoker"
-      # "cloudsql"      = "roles/cloudsql.client"
-      "pubsub" = "roles/pubsub.publisher"
-      # "iam"           = "roles/iam.serviceAccountTokenCreator"
-      # "secretmanager" = "roles/secretmanager.secretAccessor"
+      "pubsub"     = "roles/pubsub.publisher"
+      "cloudasset" = "roles/cloudasset.viewer"
     }
   }
   description = "Settings for Service Account"
@@ -153,9 +150,6 @@ variable "service_account_put_cloudsql_users_to_bigquery" {
     display_name = "SA for CF put-cloudsql-users-to-bigquery"
     roles = {
       "bigquery" = "roles/bigquery.dataEditor"
-      # "cloudrun"      = "roles/run.invoker"
-      # "iam"           = "roles/iam.serviceAccountTokenCreator"
-      # "secretmanager" = "roles/secretmanager.secretAccessor"
     }
   }
   description = "Settings for Service Account"

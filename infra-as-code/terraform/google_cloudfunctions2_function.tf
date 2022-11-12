@@ -35,7 +35,8 @@ resource "google_cloudfunctions2_function" "get_cloudsql_instance_inventory" {
   }
 
   depends_on = [
-    google_pubsub_topic_iam_member.service_account_get_cloudsql_instance_inventory
+    google_pubsub_topic_iam_member.service_account_get_cloudsql_instance_inventory,
+    google_project_iam_member.service_account_get_cloudsql_instance_inventory
   ]
 }
 
