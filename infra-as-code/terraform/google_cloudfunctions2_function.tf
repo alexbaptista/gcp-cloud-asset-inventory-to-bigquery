@@ -21,6 +21,7 @@ resource "google_cloudfunctions2_function" "get_cloudsql_instance_inventory" {
     timeout_seconds    = var.cloud_functions_get_cloudsql_instance_inventory_settings.service_config.timeout_seconds
     environment_variables = {
       PUBSUB_TOPIC_PATH = google_pubsub_topic.bigquery.id
+      GCP_PROJECT       = data.google_project.current.number
     }
     ingress_settings               = var.cloud_functions_get_cloudsql_instance_inventory_settings.service_config.ingress_settings
     all_traffic_on_latest_revision = var.cloud_functions_get_cloudsql_instance_inventory_settings.service_config.all_traffic_on_latest_revision

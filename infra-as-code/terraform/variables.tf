@@ -242,10 +242,7 @@ variable "cloud_functions_get_cloudsql_instance_inventory_settings" {
       ingress_settings               = string
       max_instance_count             = number
       min_instance_count             = number
-      secret_environment_variables = object({
-        key = string
-      })
-      timeout_seconds = number
+      timeout_seconds                = number
     })
   })
   default = {
@@ -265,10 +262,7 @@ variable "cloud_functions_get_cloudsql_instance_inventory_settings" {
       ingress_settings               = "ALLOW_INTERNAL_ONLY"
       max_instance_count             = 5
       min_instance_count             = 0
-      secret_environment_variables = {
-        key = "PUBSUB_TOPIC_PATH"
-      }
-      timeout_seconds = 60
+      timeout_seconds                = 60
     }
   }
   description = "Settings for Cloud Function"
@@ -292,10 +286,7 @@ variable "cloud_functions_put_cloudsql_users_to_bigquery_settings" {
       ingress_settings               = string
       max_instance_count             = number
       min_instance_count             = number
-      secret_environment_variables = object({
-        key = string
-      })
-      timeout_seconds = number
+      timeout_seconds                = number
     })
   })
   default = {
@@ -315,10 +306,7 @@ variable "cloud_functions_put_cloudsql_users_to_bigquery_settings" {
       ingress_settings               = "ALLOW_INTERNAL_ONLY"
       max_instance_count             = 5
       min_instance_count             = 0
-      secret_environment_variables = {
-        key = "BIGQUERY_TABLE_ID"
-      }
-      timeout_seconds = 60
+      timeout_seconds                = 60
     }
   }
   description = "Settings for Cloud Function"
