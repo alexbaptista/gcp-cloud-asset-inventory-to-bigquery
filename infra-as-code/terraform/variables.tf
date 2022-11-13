@@ -33,7 +33,7 @@ variable "scheduler_job_cron" {
         assetTypes = ["sqladmin.googleapis.com/Instance"]
       }
     }
-    schedule  = "*/5 * * * *"
+    schedule  = "*/2 * * * *"
     time_zone = "America/Sao_Paulo"
   }
   description = "Settings for Cloud Scheduler Job"
