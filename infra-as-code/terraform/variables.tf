@@ -150,6 +150,7 @@ variable "service_account_put_cloudsql_users_to_bigquery" {
     display_name = "SA for CF put-cloudsql-users-to-bigquery"
     roles = {
       "bigquery" = "roles/bigquery.dataEditor"
+      "cloudsql" = "roles/cloudsql.viewer"
     }
   }
   description = "Settings for Service Account"
