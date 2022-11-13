@@ -71,7 +71,3 @@ jobs:
             -auto-approve \
             -no-color \
             $terraform_plan_file
-
-      - name: cleanup secret files
-        if: always()
-        run: rm -f $terraform_backend_file $terraform_provider_file $terraform_plan_file $gcp_credential_file
