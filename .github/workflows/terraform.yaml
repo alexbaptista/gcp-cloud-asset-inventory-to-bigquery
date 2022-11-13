@@ -68,7 +68,6 @@ jobs:
         run: |
           terraform apply \
             -input=false \
-            -var-file=$terraform_provider_file \
             -auto-approve \
             -no-color \
             $terraform_plan_file
