@@ -5,6 +5,8 @@ Proof of Concept for to get data from Cloud Asset Inventory and send to BigQuery
 
 # Suggestion to execute Terraform files
 
+# Why can't use Dataflow ?
+
 ### Create a local file (*.tfvars) for backend/provider settings:
 
 ```provider.tfvars```
