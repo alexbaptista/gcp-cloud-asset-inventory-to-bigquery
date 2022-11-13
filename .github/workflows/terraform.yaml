@@ -52,7 +52,7 @@ jobs:
 
       - name: Terraform Validate
         id: validate
-        run: terraform validate -no-color
+        run: terraform validate
 
       - name: Terraform Plan
         id: plan
@@ -60,8 +60,7 @@ jobs:
           terraform plan \
             -input=false \
             -out=$terraform_plan_file \
-            -var-file=$terraform_provider_file \
-            -no-color
+            -var-file=$terraform_provider_file
 
       - name: Terraform Apply
         id: apply
@@ -69,5 +68,4 @@ jobs:
           terraform apply \
             -input=false \
             -auto-approve \
-            -no-color \
             $terraform_plan_file
