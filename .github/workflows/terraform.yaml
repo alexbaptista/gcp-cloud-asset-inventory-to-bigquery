@@ -6,8 +6,8 @@ on:
       - develop
       - main
     paths:
-      - infra-as-code/terraform
-      - cloud_functions
+      - infra-as-code/terraform/**
+      - cloud_functions/**
 
 env:
   terraform_version: 1.3.3
