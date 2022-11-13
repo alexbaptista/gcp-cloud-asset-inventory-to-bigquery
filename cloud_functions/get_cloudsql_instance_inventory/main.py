@@ -52,6 +52,7 @@ def get_assets_from_cloud_asset_inventory(project_id, asset_types):
 
         for asset in response:
             asset_json = json.loads(asset_v1.Asset.to_json(asset))
+            print(asset_json)
             message_to_pubsub['resources'].append({
                 'name': asset_json["resource"]["data"]["name"],
                 'type': asset_json["assetType"],
