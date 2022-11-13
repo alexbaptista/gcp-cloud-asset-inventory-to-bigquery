@@ -31,6 +31,7 @@ def get_users_from_sqladmin_googleapis(message):
         service = discovery.build('sqladmin', 'v1beta4', cache_discovery=False, credentials=credentials)
         request = service.users().list(project=project_id, instance=message["name"])
         response = request.execute()
+        print(response)
         message['users'] = response
         print('Getting users from resource: {} - total {} user(s)'.format( str(message["name"]), len(message["users"]["items"])))
         return message
