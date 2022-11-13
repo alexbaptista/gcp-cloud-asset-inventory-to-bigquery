@@ -9,8 +9,8 @@ import google.auth as auth
 def get_asset_from_cloud_event(message_from_pubsub):
     try:
         asset_decoded = base64.b64decode(message_from_pubsub["message"]["data"])
-        asset_json = json.loads(asset_decoded.decode('UTF-8'))
-        print('Getting asset from cloud event: {} total resources'.format(str(len(asset_json))))
+        asset_json = json.loads(asset_decoded.decode('UTF-8').replace("\'", "\""))
+        print('Getting asset from cloud event: {}'.format(str(asset_json['name'])))
         return asset_json
     except Exception as e:
         print('Error to get asset from cloud event: {}'.format(str(e)))
@@ -29,13 +29,10 @@ def get_users_from_sqladmin_googleapis(message):
     try:
         credentials, project_id = auth.default()
         service = discovery.build('sqladmin', 'v1beta4', cache_discovery=False, credentials=credentials)
-
-        for item in message:
-            request = service.users().list(project=project_id, instance=item["name"])
-            response = request.execute()
-            item['users'] = response
-            print('Getting users from resource: {} - total {} user(s)'.format( str(item["name"]), len(item["users"]["items"])))
-
+        request = service.users().list(project=project_id, instance=message["name"])
+        response = request.execute()
+        message['users'] = response
+        print('Getting users from resource: {} - total {} user(s)'.format( str(message["name"]), len(message["users"]["items"])))
         return message
     except Exception as e:
         print('Error to get users from sqladmin api: {}'.format(str(e)))
@@ -44,20 +41,19 @@ def get_users_from_sqladmin_googleapis(message):
 def put_data_to_bigquery(bigquery_table_id, message):
     try:
         client = bigquery.Client()
-        for item in message:
-            errors = client.insert_rows_json(bigquery_table_id, [
-                { 
-                    'name': item["name"],
-                    'type': item["type"],
-                    'api': item["api"],
-                    'location': item["location"],
-                    'lastUpdate': item["lastUpdate"],
-                    'users': json.dumps(item["users"])
-                }
-            ])
-            if errors != []:
-                raise ValueError
-        print('Recorded data onto BigQuery: {} total resources'.format(str(len(message))))
+        errors = client.insert_rows_json(bigquery_table_id, [
+            { 
+                'name': message["name"],
+                'type': message["type"],
+                'api': message["api"],
+                'location': message["location"],
+                'lastUpdate': message["lastUpdate"],
+                'users': json.dumps(message["users"])
+            }
+        ])
+        if errors != []:
+            raise ValueError
+        print('Recorded data onto BigQuery: {}'.format(str(message['name'])))
     except Exception as e:
         print('Error to put data onto BigQuery: {}'.format(str(e)))
         raise
