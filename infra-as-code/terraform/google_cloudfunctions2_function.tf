@@ -63,7 +63,7 @@ resource "google_cloudfunctions2_function" "put_cloudsql_users_to_bigquery" {
     available_memory   = var.cloud_functions_put_cloudsql_users_to_bigquery_settings.service_config.available_memory
     timeout_seconds    = var.cloud_functions_put_cloudsql_users_to_bigquery_settings.service_config.timeout_seconds
     environment_variables = {
-      BIGQUERY_TABLE_ID = google_bigquery_table.cloudsql_users.table_id
+      BIGQUERY_TABLE_ID = join(".", setsubtract(split("/", "${google_bigquery_table.cloudsql_users.id}"), ["projects", "datasets", "tables"]))
     }
     ingress_settings               = var.cloud_functions_put_cloudsql_users_to_bigquery_settings.service_config.ingress_settings
     all_traffic_on_latest_revision = var.cloud_functions_put_cloudsql_users_to_bigquery_settings.service_config.all_traffic_on_latest_revision
