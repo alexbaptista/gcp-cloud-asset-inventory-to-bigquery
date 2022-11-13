@@ -29,9 +29,10 @@ resource "google_cloudfunctions2_function" "get_cloudsql_instance_inventory" {
   }
 
   event_trigger {
-    event_type   = var.cloud_functions_get_cloudsql_instance_inventory_settings.event_trigger.event_type
-    retry_policy = var.cloud_functions_get_cloudsql_instance_inventory_settings.event_trigger.retry_policy
-    pubsub_topic = google_pubsub_topic.scheduler_job.id
+    event_type     = var.cloud_functions_get_cloudsql_instance_inventory_settings.event_trigger.event_type
+    retry_policy   = var.cloud_functions_get_cloudsql_instance_inventory_settings.event_trigger.retry_policy
+    pubsub_topic   = google_pubsub_topic.scheduler_job.id
+    trigger_region = data.google_client_config.current.region
   }
 
   depends_on = [
@@ -70,9 +71,10 @@ resource "google_cloudfunctions2_function" "put_cloudsql_users_to_bigquery" {
   }
 
   event_trigger {
-    event_type   = var.cloud_functions_put_cloudsql_users_to_bigquery_settings.event_trigger.event_type
-    retry_policy = var.cloud_functions_put_cloudsql_users_to_bigquery_settings.event_trigger.retry_policy
-    pubsub_topic = google_pubsub_topic.bigquery.id
+    event_type     = var.cloud_functions_put_cloudsql_users_to_bigquery_settings.event_trigger.event_type
+    retry_policy   = var.cloud_functions_put_cloudsql_users_to_bigquery_settings.event_trigger.retry_policy
+    pubsub_topic   = google_pubsub_topic.bigquery.id
+    trigger_region = data.google_client_config.current.region
   }
 
   depends_on = [
