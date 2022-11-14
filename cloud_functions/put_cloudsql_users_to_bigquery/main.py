@@ -33,9 +33,11 @@ def get_users_from_sqladmin_googleapis(message):
         request = service.users().list(project=project_id, instance=message["name"])
         response = request.execute()
         message['users'] = response
+        message['error'] = None
         print('Getting users from resource: {} - total {} user(s)'.format( str(message["name"]), len(message["users"]["items"])))
         return message
     except errors.HttpError as e:
+        message['users'] = None
         message['error'] = json.loads(e.content.decode('UTF-8').replace("\'", "\""))
         print('Getting users from resource: {} - UNKNOWN - sqladmin api error HTTP {} '.format( str(message["name"]), str(e.status_code) ))
         return message
