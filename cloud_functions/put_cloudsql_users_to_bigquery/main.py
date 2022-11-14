@@ -36,7 +36,7 @@ def get_users_from_sqladmin_googleapis(message):
         print('Getting users from resource: {} - total {} user(s)'.format( str(message["name"]), len(message["users"]["items"])))
         return message
     except errors.HttpError as e:
-        message['users'] = json.loads(e.content.decode('UTF-8').replace("\'", "\""))
+        message['error'] = json.loads(e.content.decode('UTF-8').replace("\'", "\""))
         print('Getting users from resource: {} - UNKNOWN - sqladmin api error HTTP {} '.format( str(message["name"]), str(e.status_code) ))
         return message
         pass        
@@ -54,7 +54,8 @@ def put_data_to_bigquery(bigquery_table_id, message):
                 'api': message["api"],
                 'location': message["location"],
                 'lastUpdate': message["lastUpdate"],
-                'users': json.dumps(message["users"])
+                'users': json.dumps(message["users"]),
+                'error': json.dumps(message["error"]),
             }
         ])
         if errors != []:

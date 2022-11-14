@@ -116,6 +116,11 @@ variable "bigquery_table_cloudsql_users" {
       {
         mode = "NULLABLE"
         name = "users"
+        type = "STRING"
+      },
+      {
+        mode = "NULLABLE"
+        name = "error"
         type = "JSON"
     }]
   }
