@@ -41,11 +41,9 @@ variable "scheduler_job_cron" {
 
 variable "topic_scheduler_job" {
   type = object({
-    message_retention_duration = string
     name                       = string
   })
   default = {
-    message_retention_duration = "604800s"
     name                       = "pub-sub-for-trigger-cloudfunctions"
   }
   description = "Settings for Pub Sub"
@@ -53,11 +51,9 @@ variable "topic_scheduler_job" {
 
 variable "topic_bigquery" {
   type = object({
-    message_retention_duration = string
     name                       = string
   })
   default = {
-    message_retention_duration = "604800s"
     name                       = "pub-sub-for-put-data-into-bigquery"
   }
   description = "Settings for Pub Sub"
