@@ -74,7 +74,7 @@ jobs:
 
       - name: Terraform Plan
         id: plan
-        if: contains(terraform.outputs.action, 'apply')
+        if: contains(jobs.terraform.outputs.action, 'apply')
         run: |
           terraform plan \
             -input=false \
@@ -83,7 +83,7 @@ jobs:
 
       - name: Terraform Apply
         id: apply
-        if: contains(terraform.outputs.action, 'apply')
+        if: contains(jobs.terraform.outputs.action, 'apply')
         run: |
           terraform apply \
             -input=false \
@@ -92,7 +92,7 @@ jobs:
 
       - name: Terraform Destroy
         id: destroy
-        if: contains(terraform.outputs.action, 'destroy')
+        if: contains(jobs.terraform.outputs.action, 'destroy')
         run: |
           terraform destroy \
             -input=false \
