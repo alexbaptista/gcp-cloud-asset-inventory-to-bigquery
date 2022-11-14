@@ -1,6 +1,7 @@
 import os
 import json
 import base64
+import datetime
 import functions_framework
 import google.cloud.bigquery as bigquery
 import googleapiclient.discovery as discovery
@@ -58,7 +59,7 @@ def put_data_to_bigquery(bigquery_table_id, message):
                 'api_updated_at': str(message["api_updated_at"]).replace("Z", ""),
                 'users': json.dumps(message["users"]),
                 'error': json.dumps(message["error"]),
-                'created_at': "AUTO",
+                'created_at': datetime.datetime.utcnow().isoformat(),
             }
         ])
         if errors != []:
