@@ -106,7 +106,7 @@ variable "bigquery_table_cloudsql_users" {
       },
       {
         mode = "NULLABLE"
-        name = "lastUpdate"
+        name = "api_updated_at"
         type = "DATETIME"
       },
       {
@@ -118,6 +118,10 @@ variable "bigquery_table_cloudsql_users" {
         mode = "NULLABLE"
         name = "error"
         type = "JSON"
+      },
+      {
+        name = "created_at"
+        type = "DATETIME"
     }]
   }
   description = "Table to put data onto BigQuery"

@@ -55,9 +55,10 @@ def put_data_to_bigquery(bigquery_table_id, message):
                 'type': message["type"],
                 'api': message["api"],
                 'location': message["location"],
-                'lastUpdate': str(message["lastUpdate"]).replace("Z", ""),
+                'api_updated_at': str(message["api_updated_at"]).replace("Z", ""),
                 'users': json.dumps(message["users"]),
                 'error': json.dumps(message["error"]),
+                'created_at': "AUTO",
             }
         ])
         if errors != []:

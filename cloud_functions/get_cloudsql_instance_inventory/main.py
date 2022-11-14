@@ -57,7 +57,7 @@ def get_assets_from_cloud_asset_inventory(project_id, asset_types):
                 'type': asset_json["assetType"],
                 'api': asset_json["resource"]["data"]["selfLink"],
                 'location': asset_json["resource"]["location"],
-                'lastUpdate': asset_json["updateTime"]
+                'api_updated_at': asset_json["updateTime"]
             })
 
         print('Building message to publish messages: {} resources found'.format(str(len(message_to_pubsub['resources']))))
