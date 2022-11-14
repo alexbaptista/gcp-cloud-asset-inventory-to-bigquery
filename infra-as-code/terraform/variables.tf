@@ -107,7 +107,7 @@ variable "bigquery_table_cloudsql_users" {
       {
         mode = "NULLABLE"
         name = "lastUpdate"
-        type = "STRING"
+        type = "DATETIME"
       },
       {
         mode = "NULLABLE"
