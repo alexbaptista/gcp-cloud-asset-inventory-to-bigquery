@@ -1,4 +1,4 @@
-name: Deploy using Terraform
+name: Destroy using Terraform
 
 on:
   push:
@@ -14,14 +14,13 @@ env:
   terraform_workdir: infra-as-code/terraform
   terraform_backend_file: backend.tfvars
   terraform_provider_file: provider.tfvars
-  terraform_plan_file: plan.tfplan
   terraform_action: ${{ secrets.TERRAFORM_ACTION }}
   gcp_credential_file: gcp_service_account.json
 
 jobs:
-  deploy:
-    name: Deploy infrastructure using Terraform
-    if: ${{ env.terraform_action == 'apply' }}
+  cleanup:
+    name: Destroy infrastructure using Terraform
+    if: ${{ env.terraform_action == 'destroy' }}
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -45,10 +44,6 @@ jobs:
         with:
           terraform_version: ${{ env.terraform_version }}
 
-      - name: Terraform Format
-        id: fmt
-        run: terraform fmt -check
-
       - name: Terraform Init
         id: init
         run: |
@@ -56,22 +51,10 @@ jobs:
             -input=false \
             -backend-config=$terraform_backend_file
 
-      - name: Terraform Validate
-        id: validate
-        run: terraform validate
-
-      - name: Terraform Plan
-        id: plan
+      - name: Terraform Destroy
+        id: destroy
         run: |
-          terraform plan \
-            -input=false \
-            -out=$terraform_plan_file \
-            -var-file=$terraform_provider_file
-
-      - name: Terraform Apply
-        id: apply
-        run: |
-          terraform apply \
+          terraform destroy \
             -input=false \
             -auto-approve \
-            $terraform_plan_file
+            -var-file=$terraform_provider_file
