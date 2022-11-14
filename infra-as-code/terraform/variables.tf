@@ -120,6 +120,7 @@ variable "bigquery_table_cloudsql_users" {
         type = "JSON"
       },
       {
+        mode = ""
         name = "created_at"
         type = "DATETIME"
     }]
