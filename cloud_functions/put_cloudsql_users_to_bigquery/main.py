@@ -4,6 +4,7 @@ import base64
 import functions_framework
 import google.cloud.bigquery as bigquery
 import googleapiclient.discovery as discovery
+import googleapiclient.errors as errors
 import google.auth as auth
 
 def get_asset_from_cloud_event(message_from_pubsub):
@@ -31,10 +32,14 @@ def get_users_from_sqladmin_googleapis(message):
         service = discovery.build('sqladmin', 'v1beta4', cache_discovery=False, credentials=credentials)
         request = service.users().list(project=project_id, instance=message["name"])
         response = request.execute()
-        print(response)
         message['users'] = response
         print('Getting users from resource: {} - total {} user(s)'.format( str(message["name"]), len(message["users"]["items"])))
         return message
+    except errors.HttpError as e:
+        message['users'] = json.loads(e.content.decode('UTF-8').replace("\'", "\""))
+        print('Getting users from resource: {} - UNKNOWN - sqladmin api error HTTP {} '.format( str(message["name"]), str(e.status_code) ))
+        return message
+        pass        
     except Exception as e:
         print('Error to get users from sqladmin api: {}'.format(str(e)))
         raise        
