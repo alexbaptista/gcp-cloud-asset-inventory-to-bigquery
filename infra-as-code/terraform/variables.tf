@@ -196,6 +196,22 @@ variable "random_name_suffix_for_storage_bucket" {
   description = "Settings for Storage Bucket random name suffix"
 }
 
+variable "random_name_suffix_for_cloud_functions" {
+  type = object({
+    length           = number
+    override_special = string
+    special          = bool
+    upper            = bool
+  })
+  default = {
+    length           = 6
+    override_special = "/@£$"
+    special          = false
+    upper            = false
+  }
+  description = "Settings for Cloud Functions random name suffix"
+}
+
 variable "cloud_functions_get_cloudsql_instance_inventory" {
   type        = string
   default     = "../../cloud_functions/get_cloudsql_instance_inventory"
