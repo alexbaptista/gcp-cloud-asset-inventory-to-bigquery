@@ -21,7 +21,7 @@ env:
 jobs:
   deploy:
     name: Deploy infrastructure using Terraform
-    if: ${{ env.terraform_action == 'apply' }}
+    if: contains(env.terraform_action == 'apply')
     runs-on: ubuntu-latest
     defaults:
       run:

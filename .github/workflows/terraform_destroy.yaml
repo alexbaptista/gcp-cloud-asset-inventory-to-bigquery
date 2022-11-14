@@ -17,7 +17,7 @@ env:
 jobs:
   cleanup:
     name: Destroy infrastructure using Terraform
-    if: ${{ env.terraform_action == 'destroy' }}
+    if: contains(env.terraform_action, 'destroy')
     runs-on: ubuntu-latest
     defaults:
       run:
