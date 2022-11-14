@@ -41,20 +41,20 @@ variable "scheduler_job_cron" {
 
 variable "topic_scheduler_job" {
   type = object({
-    name                       = string
+    name = string
   })
   default = {
-    name                       = "pub-sub-for-trigger-cloudfunctions"
+    name = "pub-sub-for-trigger-cloudfunctions"
   }
   description = "Settings for Pub Sub"
 }
 
 variable "topic_bigquery" {
   type = object({
-    name                       = string
+    name = string
   })
   default = {
-    name                       = "pub-sub-for-put-data-into-bigquery"
+    name = "pub-sub-for-put-data-into-bigquery"
   }
   description = "Settings for Pub Sub"
 }
