@@ -73,7 +73,7 @@ jobs:
 
       - name: Terraform Apply
         id: apply
-        if: steps.vars.outputs.terraform-action == 'apply')
+        if: steps.vars.outputs.terraform-action == 'apply'
         run: |
           terraform apply \
             -input=false \
@@ -82,7 +82,7 @@ jobs:
 
       - name: Terraform Destroy
         id: destroy
-        if: steps.vars.outputs.terraform-action == 'destroy')
+        if: steps.vars.outputs.terraform-action == 'destroy'
         run: |
           terraform destroy \
             -input=false \
