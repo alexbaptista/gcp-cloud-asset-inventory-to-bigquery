@@ -1,8 +1,7 @@
 # gcp-cloud-asset-inventory-to-bigquery
 Proof of Concept for to get data from Cloud Asset Inventory and send to BigQuery
 
-<!-- <br /><img src="README_content/azure-pipeline.png" width="100">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="README_content/terraform.png" width="100"><br />
- -->
+<br /><img src="README_content/gcp.png" width="200"><img src="README_content/terraform.png" width="100"><br />
 
 My purpose here is explore other approaches to export data from Cloud Asset API to BigQuery, using "Low-cost" components like Cloud Functions and Pub Sub, above i explain the other native options ["Motivations (And answers)"](#motivations-and-answers)
 
@@ -131,7 +130,7 @@ it's necessary to configure this Actions Secrets with will use the builtin workf
 
 ```GCP_SERVICE_ACCOUNT```: Input the content from Account Key Json from Service Account (before, encode it to base64 format and record as Action Secret on Github);
 
-```TERRAFORM_ACTION```: Input the action to guide Terraform **apply** ou **destroy** on workflow (before, encode it to base64 format and record as Action Secret on Github);
+```TERRAFORM_ACTION```: Input the action to guide Terraform **apply** ou **destroy** on workflow;
 
 ```TERRAFORM_BACKEND_TFVARS```:  Input the content the Backend configured as template showed above (before, encode it to base64 format and record as Action Secret on Github);
 
@@ -168,7 +167,8 @@ I accord with other benefits that the native way grants, but how as i said, i re
 I hope that my impressions helped who read until here :)
 
 ## References
-
+https://cloud.google.com/asset-inventory/docs/reference/rest
+https://cloud.google.com/sql/docs/mysql/admin-api
 https://cloud.google.com/functions/docs/concepts/python-runtime
 https://cloud.google.com/pubsub/docs/overview
 https://cloud.google.com/functions/docs/calling/pubsub
