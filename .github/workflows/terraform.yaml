@@ -39,7 +39,7 @@ jobs:
           echo $terraform_backend_tfvars | base64 --decode > $terraform_backend_file
           echo $terraform_provider_tfvars | base64 --decode > $terraform_provider_file
           echo $gcp_service_account | base64 --decode > $gcp_credential_file
-          echo "::set-output name=terraform-action::$(echo $terraform_action)"
+          echo "terraform-action=$(echo $terraform_action)" >> $GITHUB_OUTPUT
 
       - name: Setup Terraform
         id: setup
