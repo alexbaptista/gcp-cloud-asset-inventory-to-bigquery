@@ -17,7 +17,7 @@ Has a medium coupling, because was designed to get all CloudSQL instances and th
 
  - **Cloud Functions (get_cloudsql_instance_inventory)**: When occurs a "PUSH" type event from the pub/sub configured, will receive and decode a message, will get all existent instances by Cloud Asset API, will build a message (JSON) with founded instances and post to a pub/sub (1 message for instance founded) to be consumed by another function (put_cloudsql_users_to_bigquery).
 
- - **Cloud Functions (get_cloudsql_instance_inventory)**: When occurs a "PUSH" type event from the pub/sub configured, will receive and decode a message with founded instances, and will to get request to SQL Admin API searching for existent users for each instance in the message, the result will recorded into a BigQuery Table.
+ - **Cloud Functions (put_cloudsql_users_to_bigquery)**: When occurs a "PUSH" type event from the pub/sub configured, will receive and decode a message with founded instances, and will to get request to SQL Admin API searching for existent users for each instance in the message, the result will recorded into a BigQuery Table.
 
 ## Folder structure
 
