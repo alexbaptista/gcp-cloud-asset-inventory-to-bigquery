@@ -167,10 +167,17 @@ I accord with other benefits that the native way grants, but how as i said, i re
 I hope that my impressions helped who read until here :)
 
 ## References
+
 https://cloud.google.com/asset-inventory/docs/reference/rest
+
 https://cloud.google.com/sql/docs/mysql/admin-api
+
 https://cloud.google.com/functions/docs/concepts/python-runtime
+
 https://cloud.google.com/pubsub/docs/overview
+
 https://cloud.google.com/functions/docs/calling/pubsub
+
 https://cloud.google.com/bigquery/docs/schemas
+
 https://cloud.google.com/scheduler/docs/creating
